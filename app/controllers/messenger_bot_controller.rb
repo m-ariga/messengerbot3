@@ -4,7 +4,7 @@ class MessengerBotController < ActionController::Base
   profile = sender.get_profile[:body]
   profile_last_name = profile['last_name']
   profile_first_name = profile['first_name']
-  # text = event['message']['text']
+  text = event['message']['text']
 # sender.reply({ text: "こんにちは。"})
   sender.reply({ "attachment":{
             "type":"template",
