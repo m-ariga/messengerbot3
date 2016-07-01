@@ -172,6 +172,6 @@ class MessengerBotController < ActionController::Base
         
         
       #ex) process sender.reply({text: "button click event!"})
-    end
+    # end
   end
 end
