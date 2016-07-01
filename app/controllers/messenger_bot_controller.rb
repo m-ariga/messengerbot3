@@ -32,7 +32,6 @@ class MessengerBotController < ActionController::Base
       elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
       else
-          sender.reply({ text: "すみません、私には分からないのです。"})
       end
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
