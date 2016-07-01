@@ -27,13 +27,13 @@ class MessengerBotController < ActionController::Base
           }
       })
       
-      # if text == お気に入り or おきにいり
-      #     sender.reply({ text: "お気に入り一覧"})
-      # elsif text == おすすめ or オススメ or お薦め
-      #     sender.reply({ text: "オススメの一曲はこちらです。"})
-      # else
-      #     sender.reply({ text: "すみません、私には分からないのです。"})
-      # end
+      if text == "お気に入り"
+          sender.reply({ text: "お気に入り一覧"})
+      elsif text == "おすすめ"
+          sender.reply({ text: "オススメの一曲はこちらです。"})
+      else
+          sender.reply({ text: "すみません、私には分からないのです。"})
+      end
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
   end
