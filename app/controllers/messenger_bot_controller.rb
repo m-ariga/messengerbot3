@@ -65,11 +65,11 @@ class MessengerBotController < ActionController::Base
                         "title":"リラックスしたい",
                         "payload":"lowtempo"
                     },
-                    {
-                        "type":"postback",
-                        "title":"どちらでもない",
-                        "payload":"freeword"
-                    }
+                    # {
+                    #     "type":"postback",
+                    #     "title":"どちらでもない",
+                    #     "payload":"freeword"
+                    # }
                 ]
             }
         }
