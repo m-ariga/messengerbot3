@@ -6,7 +6,7 @@ class CreateMusics < ActiveRecord::Migration
       t.string :genre
       t.text :url
 
-      t.timestamps null: false
+      # t.timestamps null: false
     end
   end
 end
