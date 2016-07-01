@@ -1,11 +1,11 @@
 class MessengerBotController < ActionController::Base
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
-  profile = sender.get_profile[:body]
-  profile_last_name = profile['last_name']
-  profile_first_name = profile['first_name']
+#   profile = sender.get_profile[:body]
+#   profile_last_name = profile['last_name']
+#   profile_first_name = profile['first_name']
 #   text = event['message']['text']
-  sender.reply({ text: "#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします"})
+sender.reply({ text: "こんにちは。"})
 #   sender.reply({ "attachment":{
 #             "type":"template",
 #             "payload":{
@@ -121,30 +121,30 @@ class MessengerBotController < ActionController::Base
     #      }
     #   })
     #   #曲を紹介する
-    # #   when "clubmusic"
-    # #       @music = Music.find_by(genre: "clubmusic")
+    #   when "clubmusic"
+    #       @music = Music.find_by(genre: "clubmusic")
           
-    # #       sender.reply({ "attachment":{
-    # #         "type":"template",
-    # #         "payload":{
-    # #             "template_type":"button",
-    # #             "text":"#{@music.artist}の#{@music.musicname}はいかがでしょうか？",
-    # #             "buttons":[
-    # #                 {
-    # #                     "type":"web_url",
-    # #                     "url":"#{@music.url}",
-    # #                     "title":"曲を聴く。"
+    #       sender.reply({ "attachment":{
+    #         "type":"template",
+    #         "payload":{
+    #             "template_type":"button",
+    #             "text":"#{@music.artist}の#{@music.musicname}はいかがでしょうか？",
+    #             "buttons":[
+    #                 {
+    #                     "type":"web_url",
+    #                     "url":"#{@music.url}",
+    #                     "title":"曲を聴く。"
                         
-    # #                 },
-    # #                 {
-    # #                     "type":"postback",
-    # #                     "title":"お気に入りに登録する。",
-    # #                     "payload":"favorite"
-    # #                 }
-    # #             ]
-    # #         }
-    # #      }
-    # #   })
+    #                 },
+    #                 {
+    #                     "type":"postback",
+    #                     "title":"お気に入りに登録する。",
+    #                     "payload":"favorite"
+    #                 }
+    #             ]
+    #         }
+    #      }
+    #   })
     #   when "brazil"
     #       sender.reply({ text: "サンバ" })
     #   when "bossanova"
