@@ -4,7 +4,7 @@ class MessengerBotController < ActionController::Base
   profile = sender.get_profile[:body]
   profile_last_name = profile['last_name']
   profile_first_name = profile['first_name']
-  text = event['message']['text']
+  # text = event['message']['text']
 # sender.reply({ text: "こんにちは。"})
   sender.reply({ "attachment":{
             "type":"template",
@@ -27,13 +27,13 @@ class MessengerBotController < ActionController::Base
           }
       })
       
-      if text == お気に入り or おきにいり
-          sender.reply({ text: "お気に入り一覧"})
-      elsif text == おすすめ or オススメ or お薦め
-          sender.reply({ text: "オススメの一曲はこちらです。"})
-      else
-          sender.reply({ text: "すみません、私には分からないのです。"})
-      end
+      # if text == お気に入り or おきにいり
+      #     sender.reply({ text: "お気に入り一覧"})
+      # elsif text == おすすめ or オススメ or お薦め
+      #     sender.reply({ text: "オススメの一曲はこちらです。"})
+      # else
+      #     sender.reply({ text: "すみません、私には分からないのです。"})
+      # end
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
   end
@@ -65,11 +65,11 @@ class MessengerBotController < ActionController::Base
                         "title":"リラックスしたい",
                         "payload":"lowtempo"
                     },
-                    # {
-                    #     "type":"postback",
-                    #     "title":"どちらでもない",
-                    #     "payload":"freeword"
-                    # }
+                    {
+                        "type":"postback",
+                        "title":"どちらでもない",
+                        "payload":"freeword"
+                    }
                 ]
             }
         }
@@ -158,7 +158,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"私はあなたの気分に沿った曲を紹介するボットです。紹介した曲は、実際に聴いたり、お気に入りに登録できます。お気に入りをチェックしたいときは「お気に入り」と言ってみてください。「おすすめ」と言っていただければ、その日のおすすめをご紹介します。",
+                "text":"私はあなたの気分に沿った曲を紹介するボットです。紹介した曲は、実際に聴いたり、お気に入りに登録したりできます。お気に入りをチェックするには、「お気に入り」と言ってください。「おすすめ」と言っていただければ、その日のおすすめをご紹介します。",
                 "buttons":[
                     {
                         "type":"postback",
