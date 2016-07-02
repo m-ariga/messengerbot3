@@ -8,6 +8,8 @@ class MessengerBotController < ActionController::Base
   sender_id = event['sender']['id']
 # sender.reply({ text: "こんにちは。"})
   if text == "こんにちは"
+      
+    sender.reply({text: "あ"})
     @user = User.find_by(sender_id: sender_id)
     
     if @user.nil?
