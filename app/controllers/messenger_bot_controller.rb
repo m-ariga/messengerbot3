@@ -60,13 +60,13 @@ class MessengerBotController < ActionController::Base
     payload = event["postback"]["payload"]
     sender_id = event['sender']['id']
     
-    @user = User.find_by(sender_id: sender_id)
-    # if @user = User.find_by(sender_id: sender_id).nil?
-    #     @user = User.new(sender_id: sender_id)
-    #     @user.save
-    # end
+    # @user = User.find_by(sender_id: sender_id)
+    # # if @user = User.find_by(sender_id: sender_id).nil?
+    # #     @user = User.new(sender_id: sender_id)
+    # #     @user.save
+    # # end
         
-    sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
+    # sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
         
     case payload
     #テンポ絞り込み
