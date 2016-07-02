@@ -5,11 +5,11 @@ class MessengerBotController < ActionController::Base
   profile_last_name = profile['last_name']
   profile_first_name = profile['first_name']
   text = event['message']['text']
-#   sender_id = event['sender']['id']
+  sender_id = event['sender']['id']
 # sender.reply({ text: "こんにちは。"})
   if text == "こんにちは"
-    #   @user = User.new(sender_id: "10" )
-    #   @user.save
+      @user = User.new(sender_id: sender_id)
+      @user.save
   sender.reply({ "attachment":{
             "type":"template",
             "payload":{
