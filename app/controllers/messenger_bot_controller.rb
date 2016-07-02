@@ -8,8 +8,8 @@ class MessengerBotController < ActionController::Base
   sender_id = event['sender']['id']
 # sender.reply({ text: "こんにちは。"})
   if text == "こんにちは"
-      @user = User.new(sender_id: "10" )
-      @user.save
+    #   @user = User.new(sender_id: "10" )
+    #   @user.save
   sender.reply({ "attachment":{
             "type":"template",
             "payload":{
