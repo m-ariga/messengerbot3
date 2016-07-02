@@ -10,7 +10,7 @@ class MessengerBotController < ActionController::Base
   if text == "あ"
       
     # sender.reply({text: "あ"})
-    # @user = User.find_by(sender_id: sender_id)
+    @user = User.find_by(sender_id: sender_id)
     
     # # if @user.nil?
     # #     @user = User.new(sender_id: sender_id)
