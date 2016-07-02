@@ -50,6 +50,15 @@ class MessengerBotController < ActionController::Base
     profile_first_name = profile['first_name']
     payload = event["postback"]["payload"]
     sender_id = event['sender']['id']
+    
+    
+    if @user = User.find_by(sender_id: sender_id).nil?
+        @user = User.new(sender_id: sender_id)
+        @user.save
+    end
+        
+    sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
+        
     case payload
     #テンポ絞り込み
     when "lookformusic"
