@@ -171,7 +171,7 @@ class MessengerBotController < ActionController::Base
       })
         #お気に入り機能
         when "favorite"
-            @favorite = user.favorites.new(:artist, :musicname, :genre, :url)
+            @favorite = user.favorites.new()
             @favorite.save
             
             sender.reply({text: "お気に入りに登録しました。"})
