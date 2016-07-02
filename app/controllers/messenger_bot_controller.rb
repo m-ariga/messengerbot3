@@ -8,11 +8,13 @@ class MessengerBotController < ActionController::Base
   sender_id = event['sender']['id']
 # sender.reply({ text: "こんにちは。"})
   if text == "こんにちは"
-    if @user = User.find_by(sender_id: sender_id).nil?
+    @user = User.find_by(sender_id: sender_id)
+    
+    if @user.nil?
         @user = User.new(sender_id: sender_id)
         @user.save
     end
-    
+    sender.reply({text: "あなたのIDは#{@user.id}"})
     sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
     
   sender.reply({ "attachment":{
