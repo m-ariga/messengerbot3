@@ -46,6 +46,7 @@ class MessengerBotController < ActionController::Base
     profile_last_name = profile['last_name']
     profile_first_name = profile['first_name']
     payload = event["postback"]["payload"]
+    sender_id = event['sender']['id']
     case payload
     #テンポ絞り込み
     when "lookformusic"
@@ -171,8 +172,12 @@ class MessengerBotController < ActionController::Base
       })
         #お気に入り機能
         when "favorite"
-            # @favorite = user.favorites.new()
-            # @favorite.save
+            
+            
+            sender.reply({text: @user.sender_id})
+            
+            @favorite = @user.favorites.new()
+            @favorite.save
             
             sender.reply({text: "お気に入りに登録しました。"})
             
