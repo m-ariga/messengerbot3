@@ -173,9 +173,10 @@ class MessengerBotController < ActionController::Base
         #お気に入り機能
         when "favorite"
             
-            
+            sender.reply({text: "senderid"})
             sender.reply({text: @user.sender_id})
             
+            sender.reply({text: "table insert"})
             @favorite = @user.favorites.new()
             @favorite.save
             
