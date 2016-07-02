@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  artist: 
+  musicname: 
+  genre: 
+  url: MyText
+  user_id: 
+
+two:
+  artist: 
+  musicname: 
+  genre: 
+  url: MyText
+  user_id: 

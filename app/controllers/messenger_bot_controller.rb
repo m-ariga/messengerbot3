@@ -158,7 +158,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"私はあなたの気分に沿った曲を紹介するボットです。紹介した曲は、実際に聴いたり、お気に入りに登録したりできます。お気に入りをチェックするには、「お気に入り」と言ってください。「おすすめ」と言っていただければ、その日のおすすめをご紹介します。",
+                "text":"私はあなたの気分に合った曲を紹介するボットです。紹介した曲は、実際に聴いたり、お気に入りに登録したりできます。お気に入りをチェックするには、「お気に入り」と言ってください。「おすすめ」と言っていただければ、その日のおすすめをご紹介します。",
                 "buttons":[
                     {
                         "type":"postback",
@@ -169,7 +169,14 @@ class MessengerBotController < ActionController::Base
             }
         }
       })
-        
+        #お気に入り機能
+        when "favorite"
+            @favorite = user.favorites.new(:artist, :musicname, :genre, :url)
+            @favorite.save
+            
+            sender.reply({text: "お気に入りに登録しました。"})
+            
+            
         
       #ex) process sender.reply({text: "button click event!"})
     end
