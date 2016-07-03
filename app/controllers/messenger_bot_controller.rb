@@ -9,12 +9,18 @@ class MessengerBotController < ActionController::Base
 # sender.reply({ text: "こんにちは。"})
   if text == "あ"
       
-    # sender.reply({text: "あ"})
-    if (@user = User.find_by(sender_id: sender_id))
-        @user = User.create(sender_id: sender_id)
+    begin
+        sender.reply({text: "あ"})
+        if (@user = User.find_by(sender_id: sender_id))
+            @user = User.create(sender_id: sender_id)
+        end
+        sender.reply({text: "あなたのIDは#{@user.id}"})
+        sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})          
+    rescue => error_res
+      sender.reply({text: "エラー：#{error_res.message}"})
     end
-    # sender.reply({text: "あなたのIDは#{@user.id}"})
-    # sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
+      
+
     
   sender.reply({ "attachment":{
             "type":"template",
