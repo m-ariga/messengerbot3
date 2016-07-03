@@ -1,5 +1,5 @@
 class MessengerBotController < ActionController::Base
-    debug_mode = true
+    debug_mode = false
     
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
