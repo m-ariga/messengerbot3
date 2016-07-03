@@ -11,7 +11,9 @@ class MessengerBotController < ActionController::Base
       
     begin
         sender.reply({text: "あ"})
-        if (@user = User.find_by(sender_id: sender_id))
+        @user = User.find_by(sender_id: sender_id)
+        
+        if @user.id.nil?
             @user = User.create(sender_id: sender_id)
         end
         sender.reply({text: "あなたのIDは#{@user.id}"})
