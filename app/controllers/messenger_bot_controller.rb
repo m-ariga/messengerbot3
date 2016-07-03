@@ -1,5 +1,5 @@
 class MessengerBotController < ActionController::Base
-    debug_mode = false
+    @@debug_mode = false
     
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
@@ -18,12 +18,12 @@ class MessengerBotController < ActionController::Base
             @user = User.create(sender_id: sender_id)
         end
         
-        if debug_mode
+        if @@debug_mode
             sender.reply({text: "あなたのIDは#{@user.id}"})
             sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
         end
     rescue => error_res
-        if debug_mode
+        if @@debug_mode
             sender.reply({text: "エラー：#{error_res.message}"})
         end
     end
@@ -77,12 +77,12 @@ class MessengerBotController < ActionController::Base
             @user = User.create(sender_id: sender_id)
         end
         
-        if debug_mode
+        if @@debug_mode
             sender.reply({text: "あなたのIDは#{@user.id}"})
             sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
         end
     rescue => error_res
-        if debug_mode
+        if @@debug_mode
             sender.reply({text: "エラー：#{error_res.message}"})
         end
     end
@@ -222,7 +222,7 @@ class MessengerBotController < ActionController::Base
         when "favorite"
             
             begin
-                if debug_mode
+                if @@debug_mode
                     sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
                     sender.reply({text: "table insert"})
                 end
@@ -231,7 +231,7 @@ class MessengerBotController < ActionController::Base
                 
                 sender.reply({text: "お気に入りに登録しました。"})       
             rescue => error_res
-                if debug_mode
+                if @@debug_mode
                     sender.reply({text: "エラー：#{error_res.message}"})
                 end
             end
