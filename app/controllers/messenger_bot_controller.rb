@@ -1,4 +1,6 @@
 class MessengerBotController < ActionController::Base
+    debug_mode = true
+    
   def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
   profile = sender.get_profile[:body]
@@ -15,12 +17,16 @@ class MessengerBotController < ActionController::Base
         if @user.nil?
             @user = User.create(sender_id: sender_id)
         end
-        sender.reply({text: "あなたのIDは#{@user.id}"})
-        sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})          
+        
+        if debug_mode
+            sender.reply({text: "あなたのIDは#{@user.id}"})
+            sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
+        end
     rescue => error_res
-      sender.reply({text: "エラー：#{error_res.message}"})
+        if debug_mode
+            sender.reply({text: "エラー：#{error_res.message}"})
+        end
     end
-      
 
     
   sender.reply({ "attachment":{
@@ -70,10 +76,15 @@ class MessengerBotController < ActionController::Base
         if @user.nil?
             @user = User.create(sender_id: sender_id)
         end
-        sender.reply({text: "あなたのIDは#{@user.id}"})
-        sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})          
+        
+        if debug_mode
+            sender.reply({text: "あなたのIDは#{@user.id}"})
+            sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
+        end
     rescue => error_res
-      sender.reply({text: "エラー：#{error_res.message}"})
+        if debug_mode
+            sender.reply({text: "エラー：#{error_res.message}"})
+        end
     end
     
     # @user = User.find_by(sender_id: sender_id)
@@ -211,15 +222,18 @@ class MessengerBotController < ActionController::Base
         when "favorite"
             
             begin
-                sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
-                
-                sender.reply({text: "table insert"})
+                if debug_mode
+                    sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
+                    sender.reply({text: "table insert"})
+                end
                 @favorite = @user.favorites.create(artist: @@music.artist, musicname: @@music.musicname, genre: @@music.genre, url: @@music.url)
                 
                 
                 sender.reply({text: "お気に入りに登録しました。"})       
             rescue => error_res
-              sender.reply({text: "エラー：#{error_res.message}"})
+                if debug_mode
+                    sender.reply({text: "エラー：#{error_res.message}"})
+                end
             end
             
 
