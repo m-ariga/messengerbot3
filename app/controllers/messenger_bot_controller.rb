@@ -216,6 +216,7 @@ class MessengerBotController < ActionController::Base
                 sender.reply({text: "table insert"})
                 @favorite = @user.favorites.create(artist: @@music.artist, musicname: @@music.musicname, genre: @@music.genre, url: @@music.url)
                 
+                
                 sender.reply({text: "お気に入りに登録しました。"})       
             rescue => error_res
               sender.reply({text: "エラー：#{error_res.message}"})
