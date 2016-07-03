@@ -160,17 +160,17 @@ class MessengerBotController < ActionController::Base
       })
       #曲を紹介する
        when "clubmusic"
-           @music = Music.find_by(genre: "clubmusic")
+           @@music = Music.find_by(genre: "clubmusic")
           
            sender.reply({ "attachment":{
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"#{@music.artist}の#{@music.musicname}はいかがでしょうか？",
+                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
                  "buttons":[
                      {
                          "type":"web_url",
-                         "url":"#{@music.url}",
+                         "url":"#{@@music.url}",
                          "title":"曲を聴く。"
                         
                      },
@@ -214,7 +214,7 @@ class MessengerBotController < ActionController::Base
                 sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
                 
                 sender.reply({text: "table insert"})
-                @favorite = @user.favorites.create(artist: @music.artist, musicname: @music.musicname, genre: @music.genre, url: @music.url)
+                @favorite = @user.favorites.create(artist: @@music.artist, musicname: @@music.musicname, genre: @@music.genre, url: @@music.url)
                 
                 sender.reply({text: "お気に入りに登録しました。"})       
             rescue => error_res
