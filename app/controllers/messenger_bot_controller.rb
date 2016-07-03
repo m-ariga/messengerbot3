@@ -10,7 +10,6 @@ class MessengerBotController < ActionController::Base
   if text == "あ"
       
     begin
-        sender.reply({text: "あ"})
         @user = User.find_by(sender_id: sender_id)
         
         if @user.nil?
@@ -64,6 +63,18 @@ class MessengerBotController < ActionController::Base
     profile_first_name = profile['first_name']
     payload = event["postback"]["payload"]
     sender_id = event['sender']['id']
+    
+    begin
+        @user = User.find_by(sender_id: sender_id)
+        
+        if @user.nil?
+            @user = User.create(sender_id: sender_id)
+        end
+        sender.reply({text: "あなたのIDは#{@user.id}"})
+        sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})          
+    rescue => error_res
+      sender.reply({text: "エラー：#{error_res.message}"})
+    end
     
     # @user = User.find_by(sender_id: sender_id)
     # # if @user = User.find_by(sender_id: sender_id).nil?
@@ -199,14 +210,18 @@ class MessengerBotController < ActionController::Base
         #お気に入り機能
         when "favorite"
             
-            sender.reply({text: "senderid"})
-            sender.reply({text: @user.sender_id})
+            begin
+                sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
+                
+                sender.reply({text: "table insert"})
+                @favorite = @user.favorites.create(artist: @music.artist, musicname: @music.musicname, genre: @music.genre, url: @music.url)
+                
+                sender.reply({text: "お気に入りに登録しました。"})       
+            rescue => error_res
+              sender.reply({text: "エラー：#{error_res.message}"})
+            end
             
-            sender.reply({text: "table insert"})
-            @favorite = @user.favorites.new()
-            @favorite.save
-            
-            sender.reply({text: "お気に入りに登録しました。"})
+
             
             
         
