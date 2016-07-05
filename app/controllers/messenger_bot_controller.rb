@@ -28,7 +28,7 @@ class MessengerBotController < ActionController::Base
         if text == "お気に入り"
           @favorites = Array.new
           @favorites = @user.favorites.where(user_id: @user.id)
-          t = @favorites.length - 1
+          t = @favorites.count - 1
           0.upto(t){|s|
           sender.reply({ text: "お気に入り一覧です。#{@favoritest[s].artist}" })
           }
