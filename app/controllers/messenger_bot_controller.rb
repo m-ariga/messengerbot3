@@ -331,6 +331,12 @@ class MessengerBotController < ActionController::Base
             
         
       #ex) process sender.reply({text: "button click event!"})
+        
+        when "delete"
+        @@favorite = @@user.favorites.find_by(:id)
+        @@favorite.destroy
     end
   end
+  
+  
 end
