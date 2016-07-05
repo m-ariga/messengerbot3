@@ -27,34 +27,33 @@ class MessengerBotController < ActionController::Base
     end
     
   if text == "お気に入り"
-        # @favorite = @user.favorites.all
+          @favorite = @user.favorites.all
           sender.reply({ text: "ふぁゔぉりて"})
     elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
-    else
-  end
+    elsif "こんにちは"
   
-  sender.reply({ "attachment":{
-            "type":"template",
-            "payload":{
-                "template_type":"button",
-                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
-                "buttons":[
-                    {
-                        "type":"postback",
-                        "title":"曲を探す",
-                        "payload":"lookformusic"
-                    },
-                    {
-                        "type":"postback",
-                        "title":"説明を読む。",
-                        "payload":"readinstructions"
-                    }
-                ]
-            }
-          }
-      })
-      
+        sender.reply({ "attachment":{
+                "type":"template",
+                "payload":{
+                    "template_type":"button",
+                    "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
+                    "buttons":[
+                        {
+                            "type":"postback",
+                            "title":"曲を探す",
+                            "payload":"lookformusic"
+                        },
+                        {
+                            "type":"postback",
+                            "title":"説明を読む。",
+                            "payload":"readinstructions"
+                        }
+                    ]
+                }
+              }
+          })
+  
     
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
