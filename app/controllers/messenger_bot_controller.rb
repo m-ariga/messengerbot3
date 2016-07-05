@@ -56,7 +56,7 @@ class MessengerBotController < ActionController::Base
           }
         elsif text == "おすすめ"
           sender.reply({ text: "おすすめを教えちゃうよ！"})
-        elsif text == "こんにちは"
+        elsif text == "探す"
           sender.reply({ "attachment":{
                             "type":"template",
                             "payload":{
@@ -119,7 +119,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_first_name}、How are you feeling? いまどんな気分〜？",
+                "text":"#{profile_last_name}#{profile_first_name}さん、いまどんな気分〜？",
                 "buttons":[
                     {
                         "type":"postback",
@@ -128,7 +128,7 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"リラックスしたい",
+                        "title":"リラックスしたい。ふぅ〜。",
                         "payload":"lowtempo"
                     },
                     {
@@ -169,7 +169,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"リラックスといえばこんな感じでしょうか？",
+                "text":"リラックスといえばこんな感じかな〜",
                 "buttons":[
                     {
                         "type":"postback",
@@ -194,12 +194,12 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "text":"いいね〜！#{@@music.artist}の#{@@music.musicname}はどうかな？",
                  "buttons":[
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"聴いてみる！"
+                         "title":"聴いてみる"
                         
                      },
                      {
@@ -209,7 +209,7 @@ class MessengerBotController < ActionController::Base
                      },
                      {
                          "type":"postback",
-                         "title":"もう一度",
+                         "title":"もう一度探す",
                          "payload":"lookformusic"
                      }
                  ]
@@ -222,12 +222,12 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "text":"いけいけ〜！#{@@music.artist}の#{@@music.musicname}はどうかな？",
                  "buttons":[
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"聴いてみる！"
+                         "title":"聴いてみる"
                         
                      },
                      {
@@ -237,7 +237,7 @@ class MessengerBotController < ActionController::Base
                      },
                      {
                          "type":"postback",
-                         "title":"もう一度",
+                         "title":"もう一度探す",
                          "payload":"lookformusic"
                      }
                  ]
@@ -250,12 +250,12 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "text":"わかるよ〜。#{@@music.artist}の#{@@music.musicname}はどうかな？",
                  "buttons":[
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"聴いてみる！"
+                         "title":"聴いてみる"
                         
                      },
                      {
@@ -265,7 +265,7 @@ class MessengerBotController < ActionController::Base
                      },
                      {
                          "type":"postback",
-                         "title":"もう一度",
+                         "title":"もう一度探す",
                          "payload":"lookformusic"
                      }
                  ]
@@ -279,12 +279,12 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "text":"おしゃれだね〜。#{@@music.artist}の#{@@music.musicname}はどうかな？",
                  "buttons":[
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"聴いてみる！"
+                         "title":"聴いてみる"
                         
                      },
                      {
@@ -294,7 +294,7 @@ class MessengerBotController < ActionController::Base
                      },
                      {
                          "type":"postback",
-                         "title":"もう一度",
+                         "title":"もう一度探す",
                          "payload":"lookformusic"
                      }
                  ]
@@ -309,7 +309,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"あなたの気分に合いそうな曲を教えるよ。いい！と思ったら、お気に入りに登録してね。「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！気が向いた時に話しかけてくれたら嬉しいなあ",
+                "text":"あなたの気分に合いそうな曲を教えるよ。いい！と思ったら、お気に入りに登録してね。「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！気が向いた時に話しかけてくれたら嬉しいな〜。",
                 "buttons":[
                 
                     {
