@@ -27,7 +27,7 @@ class MessengerBotController < ActionController::Base
         
         if text == "お気に入り"
           @favorites = @user.favorites.all
-          sender.reply({ text: "お気に入り一覧：#{@favorites}"})
+          sender.reply({ text: "お気に入り一覧です。曲名：#{@favorites.musicname}、アーティスト名：#{@favorites.artist}、#{@favorites.url}"})
         elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
         elsif text == "こんにちは"
