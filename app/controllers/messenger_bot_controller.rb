@@ -181,7 +181,7 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"ホテルの最上階のラウンジでお酒を飲みたい",
+                        "title":"ホテルのラウンジでお酒を飲みたい",
                         "payload":"realjazz"
                     }
                 ]
