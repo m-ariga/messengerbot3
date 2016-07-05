@@ -1,66 +1,66 @@
 class MessengerBotController < ActionController::Base
     @@debug_mode = true
-    
-  def message(event, sender)
+    def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
-  profile = sender.get_profile[:body]
-  profile_last_name = profile['last_name']
-  profile_first_name = profile['first_name']
-  text = event['message']['text']
-  sender_id = event['sender']['id']
+        profile = sender.get_profile[:body]
+        profile_last_name = profile['last_name']
+        profile_first_name = profile['first_name']
+        text = event['message']['text']
+        sender_id = event['sender']['id']
     # sender.reply({ text: "こんにちは。"})
-    begin
-        @user = User.find_by(sender_id: sender_id)
+        begin
+            @user = User.find_by(sender_id: sender_id)
         
-        if @user.nil?
+            if @user.nil?
             @user = User.create(sender_id: sender_id)
-        end
+            end
         
-        if @@debug_mode
+            if @@debug_mode
             sender.reply({text: "あなたのIDは#{@user.id}"})
             sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
-        end
-    rescue => error_res
-        if @@debug_mode
+            end
+        rescue => error_res
+            if @@debug_mode
             sender.reply({text: "エラー：#{error_res.message}"})
+            end
         end
-    end
-    
-  if text == "お気に入り"
+        
+        if text == "お気に入り"
           @favorites = @user.favorites.all
           sender.reply({ text: "#{@favorites}"})
-    elsif text == "おすすめ"
+        elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
-    elsif "こんにちは"
-  
-        sender.reply({ "attachment":{
-                "type":"template",
-                "payload":{
-                    "template_type":"button",
-                    "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
-                    "buttons":[
-                        {
-                            "type":"postback",
-                            "title":"曲を探す",
-                            "payload":"lookformusic"
-                        },
-                        {
-                            "type":"postback",
-                            "title":"説明を読む。",
-                            "payload":"readinstructions"
-                        }
-                    ]
-                }
-              }
-          })
-  
+        elsif text == "こんにちは"
+          sender.reply({ "attachment":{
+                            "type":"template",
+                            "payload":{
+                                "template_type":"button",
+                                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
+                                "buttons":[
+                                    {
+                                        "type":"postback",
+                                        "title":"曲を探す",
+                                        "payload":"lookformusic"
+                                    },
+                                    {
+                                        "type":"postback",
+                                        "title":"説明を読む。",
+                                        "payload":"readinstructions"
+                                    }
+                                ]
+                            }
+                          }
+                      })
+            
+        else
+        end 
+        
+    end    
     
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
-  end
-
-  def delivery(event, sender)
-  end
+    def delivery(event, sender)
+    end
 
   def postback(event, sender)
     profile = sender.get_profile[:body]
