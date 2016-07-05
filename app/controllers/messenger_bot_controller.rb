@@ -26,31 +26,39 @@ class MessengerBotController < ActionController::Base
         # end
         
         if text == "お気に入り"
-          @favorites = @user.favorites.all
-          sender.reply({ text: "お気に入り一覧です。曲名：#{@favorites.musicname}、アーティスト名：#{@favorites.artist}、#{@favorites.url}" })
-        elsif text == "おすすめ"
-          sender.reply({ text: "オススメの一曲はこちらです。"})
-        elsif text == "こんにちは"
-          sender.reply({ "attachment":{
-                            "type":"template",
-                            "payload":{
-                                "template_type":"button",
-                                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
-                                "buttons":[
-                                    {
-                                        "type":"postback",
-                                        "title":"曲を探す",
-                                        "payload":"lookformusic"
-                                    },
-                                    {
-                                        "type":"postback",
-                                        "title":"説明を読む。",
-                                        "payload":"readinstructions"
-                                    }
-                                ]
-                            }
-                          }
-                      })
+            begin 
+                if @@debug_mode
+                @favorites = @user.favorites.all
+              　sender.reply({ text: "お気に入り一覧です。曲名：#{@favorites.musicname}、アーティスト名：#{@favorites.artist}、#{@favorites.url}" })
+                end
+            rescue => error_res
+      　　　　if @@debug_mode
+          　sender.reply({text: "エラー：#{error_res.message}"})
+            end
+        　  end
+        # elsif text == "おすすめ"
+        #   sender.reply({ text: "オススメの一曲はこちらです。"})
+        # elsif text == "こんにちは"
+        #   sender.reply({ "attachment":{
+        #                     "type":"template",
+        #                     "payload":{
+        #                         "template_type":"button",
+        #                         "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
+        #                         "buttons":[
+        #                             {
+        #                                 "type":"postback",
+        #                                 "title":"曲を探す",
+        #                                 "payload":"lookformusic"
+        #                             },
+        #                             {
+        #                                 "type":"postback",
+        #                                 "title":"説明を読む。",
+        #                                 "payload":"readinstructions"
+        #                             }
+        #                         ]
+        #                     }
+        #                   }
+        #               })
             
         else
         end 
