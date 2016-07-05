@@ -310,16 +310,53 @@ class MessengerBotController < ActionController::Base
       })
         #お気に入り機能
         when "favorite"
+            @favorite = @user.favorites.create(artist: @@music.artist, musicname: @@music.musicname, genre: @@music.genre, url: @@music.url)
+            sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"お気に入りに登録しました",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"お気に入りを見る",
+                        "payload":"showfavorite"
+                    }
+                ]
+            }
+        }
+      })
+      
+      when "showfavorite"
+        @favorites = Array.new
+        @favorites = @user.favorites.where(user_id: @user.id)
+        t = @favorites.count - 1
+        0.upto(t){|s|
+          sender.reply({ "attachment":{
+                            "type":"template",
+                            "payload":{
+                                "template_type":"button",
+                                "text":"#{s + 1}. 曲名：#{@favorites[s].musicname} \n アーティスト：#{@favorites[s].artist}",
+                                "buttons":[
+                                    {
+                                        "type":"web_url",
+                                        "url":"#{@favorites[s].url}",
+                                        "title":"聞く",
+                                        
+                                    }
+                                    
+                                ]
+                            }
+                          }
+                      })
+                    }  
             
             begin
                 if @@debug_mode
                     sender.reply({text: "追加するユーザは：#{@user.sender_id}"})
                     sender.reply({text: "table insert"})
                 end
-                @favorite = @user.favorites.create(artist: @@music.artist, musicname: @@music.musicname, genre: @@music.genre, url: @@music.url)
-                
-                
-                sender.reply({text: "お気に入りに登録しました。"})       
+                # sender.reply({text: "お気に入りに登録しました。"})       
             rescue => error_res
                 if @@debug_mode
                     sender.reply({text: "エラー：#{error_res.message}"})
