@@ -55,13 +55,13 @@ class MessengerBotController < ActionController::Base
         #   sender.reply({ text: "#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}、URL：#{@favorites[s].url}" })
           }
         elsif text == "おすすめ"
-          sender.reply({ text: "オススメの一曲はこちらです。"})
+          sender.reply({ text: "おすすめを教えちゃうよ！"})
         elsif text == "こんにちは"
           sender.reply({ "attachment":{
                             "type":"template",
                             "payload":{
                                 "template_type":"button",
-                                "text":"#{profile_last_name} #{profile_first_name}さん、こんにちは〜。",
+                                "text":"#{profile_last_name} #{profile_first_name}さん、こんにちは〜",
                                 "buttons":[
                                     {
                                         "type":"postback",
@@ -119,11 +119,11 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_last_name} #{profile_first_name}さんは今どんな気分なの？",
+                "text":"#{profile_first_name}、How are you feeling? いまどんな気分〜？",
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"ノリノリで行きたい",
+                        "title":"ノリノリで行きたい。Yeah!",
                         "payload":"hightempo"
                     },
                     {
@@ -309,10 +309,10 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"あなたの気分に合いそうな曲を教えるよ。\n
-                いい！と思ったら、お気に入りに登録してね。\n
-                「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。\n
-                「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！\n
+                "text":"あなたの気分に合いそうな曲を教えるよ。
+                いい！と思ったら、お気に入りに登録してね。
+                「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。
+                「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！
                 気が向いた時に話しかけてくれたら嬉しいなあ",
                 "buttons":[
                 
