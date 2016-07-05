@@ -192,7 +192,7 @@ class MessengerBotController < ActionController::Base
           sender.reply({ text: "じゃあ、どんな気分か言ってみてください。なるべく探してみるので・・・" })
       #曲を紹介する
       　when "clubmusic2"
-           @@music = Music.find_by(genre: "clubmusic2")
+           @@music = Music.find_by(genre: "clubmusic2" )
           
            sender.reply({ "attachment":{
              "type":"template",
