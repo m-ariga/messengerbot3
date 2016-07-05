@@ -41,12 +41,12 @@ class MessengerBotController < ActionController::Base
                                         "url":"#{@favorites[s].url}",
                                         "title":"聞く",
                                         
-                                    },
-                                    {
-                                        "type":"postback",
-                                        "title":"お気に入りから外す",
-                                        "payload":"delete"
                                     }
+                                    # {
+                                    #     "type":"postback",
+                                    #     "title":"お気に入りから外す",
+                                    #     "payload":"delete"
+                                    # }
                                 ]
                             }
                           }
@@ -332,10 +332,10 @@ class MessengerBotController < ActionController::Base
         
       #ex) process sender.reply({text: "button click event!"})
         
-        when "delete"
-        @@favorite = @@user.favorites.find_by(:id)
-        @@favorite.destroy
-        sender.reply({text: "お気に入りから外しました。"})
+        # when "delete"
+        # @@favorite = @@user.favorites.find_by(:id)
+        # @@favorite.destroy
+        # sender.reply({text: "お気に入りから外しました。"})
     end
   end
   
