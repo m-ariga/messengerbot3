@@ -60,7 +60,7 @@ class MessengerBotController < ActionController::Base
                             "type":"template",
                             "payload":{
                                 "template_type":"button",
-                                "text":"#{profile_last_name} #{profile_first_name}さん、こんにちは〜",
+                                "text":"#{profile_last_name} #{profile_first_name}さん、こんにちは。",
                                 "buttons":[
                                     {
                                         "type":"postback",
@@ -80,7 +80,7 @@ class MessengerBotController < ActionController::Base
         elsif text.include?("つらい")
           sender.reply({ text: "つらいね〜わかるよ〜"})
         elsif text == "おすすめ"
-          sender.reply({ text: "おすすめを教えちゃうよ！"})
+          sender.reply({ text: "おすすめを教えます！"})
         end 
         
     end    
@@ -121,16 +121,16 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_last_name}#{profile_first_name}さん、いまどんな気分〜？",
+                "text":"#{profile_last_name} #{profile_first_name}さん、いまどんな気分ですか？",
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"ノリノリで行きたい。Yeah!",
+                        "title":"ノリノリでいきたい。",
                         "payload":"hightempo"
                     },
                     {
                         "type":"postback",
-                        "title":"リラックスしたい。ふぅ〜。",
+                        "title":"リラックスしたい。",
                         "payload":"lowtempo"
                     },
                     {
@@ -148,7 +148,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"ノリノリって言ったらこんな感じ？",
+                "text":"ノリノリって言ったらこんな感じですかね？",
                 "buttons":[
                     {
                         "type":"postback",
@@ -171,7 +171,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"リラックスといえばこんな感じかな〜",
+                "text":"リラックスといえばこんな感じですかね？",
                 "buttons":[
                     {
                         "type":"postback",
@@ -189,7 +189,7 @@ class MessengerBotController < ActionController::Base
           }
       })
       when "freeword"
-          sender.reply({ text: "じゃあ、どんな気分なのか言ってみて。なるべく探してみる・・・" })
+          sender.reply({ text: "じゃあ、どんな気分か言ってみてください。なるべく探してみるので・・・" })
       #曲を紹介する
       　when "clubmusic"
            @@music = Music.find_by(genre: "clubmusic")
@@ -198,7 +198,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"いいね〜！#{@@music.artist}の#{@@music.musicname}はどうかな？",
+                 "text":"いいですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -226,7 +226,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"いけいけ〜！#{@@music.artist}の#{@@music.musicname}はどうかな？",
+                 "text":"爽やかですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -254,7 +254,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"わかるよ〜。#{@@music.artist}の#{@@music.musicname}はどうかな？",
+                 "text":"わかります。#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -283,7 +283,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"おしゃれだね〜。#{@@music.artist}の#{@@music.musicname}はどうかな？",
+                 "text":"おしゃれですね！#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -313,7 +313,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"あなたの気分に合いそうな曲を教えるよ。いい！と思ったら、お気に入りに登録してね。「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！気が向いた時に話しかけてくれたら嬉しいな〜。",
+                "text":"あなたの気分に合いそうな曲を教えます。いい！と思ったら、お気に入りに登録してください。「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られます。「おすすめ」と言ってくれたら、私のおすすめを紹介します。気が向いた時に話しかけてくれたら嬉しいです。",
                 "buttons":[
                 
                     {
@@ -332,7 +332,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"よかった！お気に入りに登録したよ〜。",
+                "text":"よかったです！お気に入りに登録しました。",
                 "buttons":[
                     {
                         "type":"postback",
