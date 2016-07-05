@@ -8,9 +8,7 @@ class MessengerBotController < ActionController::Base
   profile_first_name = profile['first_name']
   text = event['message']['text']
   sender_id = event['sender']['id']
-# sender.reply({ text: "こんにちは。"})
-  if text == "あ"
-      
+    # sender.reply({ text: "こんにちは。"})
     begin
         @user = User.find_by(sender_id: sender_id)
         
@@ -27,8 +25,15 @@ class MessengerBotController < ActionController::Base
             sender.reply({text: "エラー：#{error_res.message}"})
         end
     end
-
     
+  if text == "お気に入り"
+        # @favorite = @user.favorites.all
+          sender.reply({ text: "ふぁゔぉりて"})
+    elsif text == "おすすめ"
+          sender.reply({ text: "オススメの一曲はこちらです。"})
+    else
+  end
+  
   sender.reply({ "attachment":{
             "type":"template",
             "payload":{
@@ -50,14 +55,7 @@ class MessengerBotController < ActionController::Base
           }
       })
       
-    elsif text == "お気に入り"
-        # @favorite = @user.favorites.all
     
-          sender.reply({ text: "ふぁゔぉりて"})
-    elsif text == "おすすめ"
-          sender.reply({ text: "オススメの一曲はこちらです。"})
-    else
-  end
           
     # sender.reply({ text: "Reply: #{event['message']['text']}" })
   end
