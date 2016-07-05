@@ -34,7 +34,7 @@ class MessengerBotController < ActionController::Base
                             "type":"template",
                             "payload":{
                                 "template_type":"button",
-                                "text":"#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}",
+                                "text":"#{s + 1}. 曲名：#{@favorites[s].musicname} \n アーティスト：#{@favorites[s].artist}",
                                 "buttons":[
                                     {
                                         "type":"web_url",
