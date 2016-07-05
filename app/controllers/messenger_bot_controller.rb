@@ -77,16 +77,16 @@ class MessengerBotController < ActionController::Base
                           }
                       })
             
-        elsif text.include?("つらい"||"帰りたい"||"暗い"||"悲しい")
-          sender.reply({ text: "つらいね〜わかるよ〜"})
+        # elsif text.include?("つらい"||"帰りたい"||"暗い"||"悲しい")
+        #   sender.reply({ text: "つらいね〜わかるよ〜"})
         # elsif text.include?("眠い", "ねむい")
         # 　sender.reply({ text: "深呼吸してみよう〜。"})
         # elsif text.include?("お腹空いた", "腹減った")
         # 　sender.reply({ text: "つらいね〜わかるよ〜"})
         elsif text.include?("走りたい")
         　sender.reply({ text: "元気だねえ"})
-        elsif text.include?("分からない"||"わからない")
-        　sender.reply({ text: "てきとーに何か言ってよ"})
+        # elsif text.include?("分からない"||"わからない")
+        # 　sender.reply({ text: "てきとーに何か言ってよ"})
         
         elsif text == "おすすめ"
           sender.reply({ text: "おすすめを教えちゃうよ！"})
