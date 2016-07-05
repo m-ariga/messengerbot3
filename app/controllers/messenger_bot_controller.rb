@@ -198,7 +198,30 @@ class MessengerBotController < ActionController::Base
       when "bossanova"
           sender.reply({ text: "ボサノバ"})
       when "jazz"
-          sender.reply({ text: "ジャズ" })
+          @@music = Music.find_by(genre: "jazz")
+          
+           sender.reply({ "attachment":{
+             "type":"template",
+             "payload":{
+                 "template_type":"button",
+                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "buttons":[
+                     {
+                         "type":"web_url",
+                         "url":"#{@@music.url}",
+                         "title":"曲を聴く。"
+                        
+                     },
+                     {
+                         "type":"postback",
+                         "title":"お気に入りに登録する。",
+                         "payload":"favorite"
+                     }
+                 ]
+             }
+           }
+       })
+        #   sender.reply({ text: "ジャズ" })
       
       #説明をする
       when "readinstructions"
