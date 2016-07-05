@@ -199,13 +199,18 @@ class MessengerBotController < ActionController::Base
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"曲を聴く。"
+                         "title":"聴いてみる！"
                         
                      },
                      {
                          "type":"postback",
-                         "title":"お気に入りに登録する。",
+                         "title":"気に入った！",
                          "payload":"favorite"
+                     },
+                     {
+                         "type":"postback",
+                         "title":"もう一度",
+                         "payload":"lookformusic"
                      }
                  ]
              }
@@ -222,13 +227,18 @@ class MessengerBotController < ActionController::Base
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"曲を聴く。"
+                         "title":"聴いてみる！"
                         
                      },
                      {
                          "type":"postback",
-                         "title":"お気に入りに登録する。",
+                         "title":"気に入った！",
                          "payload":"favorite"
+                     },
+                     {
+                         "type":"postback",
+                         "title":"もう一度",
+                         "payload":"lookformusic"
                      }
                  ]
              }
@@ -245,13 +255,18 @@ class MessengerBotController < ActionController::Base
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"曲を聴く。"
+                         "title":"聴いてみる！"
                         
                      },
                      {
                          "type":"postback",
-                         "title":"お気に入りに登録する。",
+                         "title":"気に入った！",
                          "payload":"favorite"
+                     },
+                     {
+                         "type":"postback",
+                         "title":"もう一度",
+                         "payload":"lookformusic"
                      }
                  ]
              }
@@ -276,6 +291,11 @@ class MessengerBotController < ActionController::Base
                          "type":"postback",
                          "title":"気に入った！",
                          "payload":"favorite"
+                     },
+                     {
+                         "type":"postback",
+                         "title":"もう一度",
+                         "payload":"lookformusic"
                      }
                  ]
              }
