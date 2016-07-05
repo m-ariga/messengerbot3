@@ -54,8 +54,7 @@ class MessengerBotController < ActionController::Base
           
         #   sender.reply({ text: "#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}、URL：#{@favorites[s].url}" })
           }
-        elsif text == "おすすめ"
-          sender.reply({ text: "おすすめを教えちゃうよ！"})
+        
         elsif text == "探す"
           sender.reply({ "attachment":{
                             "type":"template",
@@ -78,7 +77,10 @@ class MessengerBotController < ActionController::Base
                           }
                       })
             
-        else
+        elsif text.include?("つらい")
+          sender.reply({ text: "つらいね〜わかるよ〜"})
+        elsif text == "おすすめ"
+          sender.reply({ text: "おすすめを教えちゃうよ！"})
         end 
         
     end    
@@ -133,7 +135,7 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"どちらでもない",
+                        "title":"どっちでもない。",
                         "payload":"freeword"
                     }
                 ]
@@ -186,8 +188,10 @@ class MessengerBotController < ActionController::Base
             }
           }
       })
+      when "freeword"
+          sender.reply({ text: "じゃあ、どんな気分なのか言ってみて。なるべく探してみる・・・" })
       #曲を紹介する
-       when "clubmusic"
+      　when "clubmusic"
            @@music = Music.find_by(genre: "clubmusic")
           
            sender.reply({ "attachment":{
@@ -328,7 +332,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"お気に入りに登録しました",
+                "text":"よかった！お気に入りに登録したよ〜。",
                 "buttons":[
                     {
                         "type":"postback",
