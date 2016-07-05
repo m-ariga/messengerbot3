@@ -30,7 +30,29 @@ class MessengerBotController < ActionController::Base
           @favorites = @user.favorites.where(user_id: @user.id)
           t = @favorites.count - 1
           0.upto(t){|s|
-          sender.reply({ text: "#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}、URL：#{@favorites[s].url}" })
+          sender.reply({ "attachment":{
+                            "type":"template",
+                            "payload":{
+                                "template_type":"button",
+                                "text":"#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}",
+                                "buttons":[
+                                    {
+                                        "type":"url",
+                                        "url":"#{@favorites[s].url}",
+                                        "title":"聞く",
+                                        
+                                    },
+                                    {
+                                        "type":"postback",
+                                        "title":"お気に入りから外す",
+                                        "payload":"delete"
+                                    }
+                                ]
+                            }
+                          }
+                      })
+          
+        #   sender.reply({ text: "#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}、URL：#{@favorites[s].url}" })
           }
         elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
