@@ -335,6 +335,7 @@ class MessengerBotController < ActionController::Base
         when "delete"
         @@favorite = @@user.favorites.find_by(:id)
         @@favorite.destroy
+        sender.reply({text: "お気に入りから外しました。"})
     end
   end
   
