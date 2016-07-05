@@ -26,8 +26,9 @@ class MessengerBotController < ActionController::Base
         end
         
         if text == "お気に入り"
+          @favorites = Array.new
           @favorites = @user.favorites.find_by(user_id: @user.id)
-          sender.reply({ text: "お気に入り一覧です。#{@favorites.musicname}"})
+          sender.reply({ text: "お気に入り一覧です。#{@favorites[0].artist}" })
         elsif text == "おすすめ"
           sender.reply({ text: "オススメの一曲はこちらです。"})
         elsif text == "こんにちは"
@@ -44,9 +45,9 @@ class MessengerBotController < ActionController::Base
                                     },
                                     {
                                         "type":"postback",
-                                        "title":"説明を読む。",
+                                        "title":"説明を読む",
                                         "payload":"readinstructions"
-                                    }
+                                    },
                                 ]
                             }
                           }
@@ -138,8 +139,8 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"リオのカーニバルに行きたい",
-                        "payload":"brazil"
+                        "title":"湘南の海でサーフィンがしたい",
+                        "payload":"shonan"
                     }
                 ]
             }
@@ -193,10 +194,52 @@ class MessengerBotController < ActionController::Base
              }
            }
        })
-      when "brazil"
-          sender.reply({ text: "サンバ" })
+      when "shonan"
+          @@music = Music.find_by(genre: 'reggae')
+          sender.reply({ "attachment":{
+             "type":"template",
+             "payload":{
+                 "template_type":"button",
+                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "buttons":[
+                     {
+                         "type":"web_url",
+                         "url":"#{@@music.url}",
+                         "title":"曲を聴く。"
+                        
+                     },
+                     {
+                         "type":"postback",
+                         "title":"お気に入りに登録する。",
+                         "payload":"favorite"
+                     }
+                 ]
+             }
+           }
+       })
       when "bossanova"
-          sender.reply({ text: "ボサノバ"})
+          @@music = Music.find_by(genre: 'bossanova')
+          sender.reply({ "attachment":{
+             "type":"template",
+             "payload":{
+                 "template_type":"button",
+                 "text":"#{@@music.artist}の#{@@music.musicname}はいかがでしょうか？",
+                 "buttons":[
+                     {
+                         "type":"web_url",
+                         "url":"#{@@music.url}",
+                         "title":"曲を聴く。"
+                        
+                     },
+                     {
+                         "type":"postback",
+                         "title":"お気に入りに登録する。",
+                         "payload":"favorite"
+                     }
+                 ]
+             }
+           }
+       })
       when "jazz"
           @@music = Music.find_by(genre: "jazz")
           
