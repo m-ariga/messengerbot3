@@ -28,5 +28,74 @@ Things you may want to cover:
 * ...
 
 
+
+
+
+
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "recipient":{
+    "id":"1080636225362452"
+  },
+  "message":{
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type":"button",
+        "text":"おはようございます！この曲で1日をスタートしませんか？",
+        "buttons":[
+          {
+            "type":"web_url",
+            "url":"https://itun.es/jp/dLyUq?i=280594826",
+            "title":"I'm Yours by Jason Mraz--聴く"
+          },
+          {
+            "type":"postback",
+            "title":"お気に入り",
+            "payload":"showfavorite"
+          }
+        ]
+      }
+    }
+  }
+}' "https://graph.facebook.com/v2.6/me/messages?access_token=EAAOsKn9vHH0BANcZCGPpSIbiL93pJkE5v5A6jjneIDkeY5WEIko0ngu6h20U5GcEu2tfbjbQI130J5x63FbZCSkUTqZB02lznYclJsTKEoDwvJfyyZAxdiE6CNziBvW1ZBffqzH5lqk5V3R2PFlAmbIE5ED27GfRkGArYurCnZAAZDZD"
+
+
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "setting_type" : "call_to_actions",
+  "thread_state" : "existing_thread",
+  "call_to_actions":[
+    {
+      "type":"postback",
+      "title":"説明を読む",
+      "payload":"readinstructions"
+    },
+    {
+      "type":"postback",
+      "title":"曲を探す",
+      "payload":"lookformusic"
+    },
+    {
+      "type":"postback",
+      "title":"お気に入り",
+      "payload":"showfavorite"
+    }
+  ]
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAOsKn9vHH0BANcZCGPpSIbiL93pJkE5v5A6jjneIDkeY5WEIko0ngu6h20U5GcEu2tfbjbQI130J5x63FbZCSkUTqZB02lznYclJsTKEoDwvJfyyZAxdiE6CNziBvW1ZBffqzH5lqk5V3R2PFlAmbIE5ED27GfRkGArYurCnZAAZDZD"
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "setting_type":"call_to_actions",
+  "thread_state":"new_thread",
+  "call_to_actions":[
+    {
+      "payload":"lookformusic"
+    }
+  ]
+}' "https://graph.facebook.com/v2.6/me/thread_settings?access_token=EAAOsKn9vHH0BANcZCGPpSIbiL93pJkE5v5A6jjneIDkeY5WEIko0ngu6h20U5GcEu2tfbjbQI130J5x63FbZCSkUTqZB02lznYclJsTKEoDwvJfyyZAxdiE6CNziBvW1ZBffqzH5lqk5V3R2PFlAmbIE5ED27GfRkGArYurCnZAAZDZD"
+
+INSERT INTO musics(artist, musicname, url, genre) VALUES();
