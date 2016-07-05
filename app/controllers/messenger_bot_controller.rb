@@ -1,5 +1,5 @@
 class MessengerBotController < ActionController::Base
-    @@debug_mode = true
+    @@debug_mode = false
     def message(event, sender)
     # profile = sender.get_profile(field) # default field [:locale, :timezone, :gender, :first_name, :last_name, :profile_pic]
         profile = sender.get_profile[:body]
@@ -8,22 +8,22 @@ class MessengerBotController < ActionController::Base
         text = event['message']['text']
         sender_id = event['sender']['id']
     # sender.reply({ text: "こんにちは。"})
-        # begin
+        begin
             @user = User.find_by(sender_id: sender_id)
         
             if @user.nil?
             @user = User.create(sender_id: sender_id)
             end
         
-        #     if @@debug_mode
-        #     sender.reply({text: "あなたのIDは#{@user.id}"})
-        #     sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
-        #     end
-        # rescue => error_res
-        #     if @@debug_mode
-        #     sender.reply({text: "エラー：#{error_res.message}"})
-        #     end
-        # end
+            if @@debug_mode
+            sender.reply({text: "あなたのIDは#{@user.id}"})
+            sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})   
+            end
+        rescue => error_res
+            if @@debug_mode
+            sender.reply({text: "エラー：#{error_res.message}"})
+            end
+        end
         
         if text == "お気に入り"
           @favorites = @user.favorites.find_by(user_id: @user.id)
