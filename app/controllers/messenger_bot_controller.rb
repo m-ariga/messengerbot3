@@ -61,7 +61,7 @@ class MessengerBotController < ActionController::Base
                             "type":"template",
                             "payload":{
                                 "template_type":"button",
-                                "text":"#{profile_last_name} #{profile_first_name}さんこんにちは。あなたの曲探しをお手伝いします",
+                                "text":"#{profile_last_name} #{profile_first_name}さん、こんにちは〜。",
                                 "buttons":[
                                     {
                                         "type":"postback",
@@ -111,14 +111,6 @@ class MessengerBotController < ActionController::Base
             sender.reply({text: "エラー：#{error_res.message}"})
         end
     end
-    
-    # @user = User.find_by(sender_id: sender_id)
-    # # if @user = User.find_by(sender_id: sender_id).nil?
-    # #     @user = User.new(sender_id: sender_id)
-    # #     @user.save
-    # # end
-        
-    # sender.reply({text: "あなたのsenderIDは#{@user.sender_id}"})
         
     case payload
     #テンポ絞り込み
@@ -127,7 +119,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"#{profile_last_name} #{profile_first_name}さんは今どんな気分ですか？",
+                "text":"#{profile_last_name} #{profile_first_name}さんは今どんな気分なの？",
                 "buttons":[
                     {
                         "type":"postback",
@@ -154,7 +146,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"ノリノリといえばこんな感じでしょうか？",
+                "text":"ノリノリって言ったらこんな感じ？",
                 "buttons":[
                     {
                         "type":"postback",
@@ -277,12 +269,12 @@ class MessengerBotController < ActionController::Base
                      {
                          "type":"web_url",
                          "url":"#{@@music.url}",
-                         "title":"曲を聴く。"
+                         "title":"聴いてみる！"
                         
                      },
                      {
                          "type":"postback",
-                         "title":"お気に入りに登録する。",
+                         "title":"気に入った！",
                          "payload":"favorite"
                      }
                  ]
@@ -297,8 +289,13 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"私はあなたの気分に合った曲を紹介するボットです。紹介した曲は、実際に聴いたり、お気に入りに登録したりできます。お気に入りをチェックするには、「お気に入り」と言ってください。「おすすめ」と言っていただければ、その日のおすすめをご紹介します。",
+                "text":"あなたの気分に合いそうな曲を教えるよ。\n
+                いい！と思ったら、お気に入りに登録してね。\n
+                「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られるよ。\n
+                「おすすめ」と言ってくれたら、僕のお気に入りを教えちゃうよ！\n
+                気が向いた時に話しかけてくれたら嬉しいなあ",
                 "buttons":[
+                
                     {
                         "type":"postback",
                         "title":"さっそく曲を探す",
