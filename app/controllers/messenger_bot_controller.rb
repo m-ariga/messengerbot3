@@ -220,7 +220,7 @@ class MessengerBotController < ActionController::Base
            }
        })
       when "shonan"
-          @@music = Music.find_by(genre: 'reggae')
+          @@music = Music.find_by(genre: "surfrock")
           sender.reply({ "attachment":{
              "type":"template",
              "payload":{
@@ -243,7 +243,7 @@ class MessengerBotController < ActionController::Base
            }
        })
       when "bossanova"
-          @@music = Music.find_by(genre: 'bossanova')
+          @@music = Music.find_by(genre: "bossanova")
           sender.reply({ "attachment":{
              "type":"template",
              "payload":{
