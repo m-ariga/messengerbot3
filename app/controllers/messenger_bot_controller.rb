@@ -191,14 +191,13 @@ class MessengerBotController < ActionController::Base
       when "freeword"
           sender.reply({ text: "じゃあ、どんな気分か言ってみてください。なるべく探してみるので・・・" })
       #曲を紹介する
-      　when "clubmusic2"
-           @@music = Music.find_by(genre: "clubmusic2" )
-          
-           sender.reply({ "attachment":{
+      when "clubmusic2"
+          @@music = Music.find_by(genre: "clubmusic2")
+          sender.reply({ "attachment":{
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"いいですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"爽やかですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -220,6 +219,7 @@ class MessengerBotController < ActionController::Base
              }
            }
        })
+   
       when "shonan2"
           @@music = Music.find_by(genre: "shonan2")
           sender.reply({ "attachment":{
