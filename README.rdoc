@@ -1,5 +1,9 @@
 == README
 
+favoritemodel Tue Jul 5 09:17:35 UTC 2016
+曲紹介
+お気に入り登録、一覧表示
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
