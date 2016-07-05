@@ -197,7 +197,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"爽やかですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"私のイチオシです！#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
