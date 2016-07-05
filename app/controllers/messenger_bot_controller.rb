@@ -153,13 +153,13 @@ class MessengerBotController < ActionController::Base
                     {
                         "type":"postback",
                         "title":"クラブで踊りたい",
-                        "payload":"clubmusic"
+                        "payload":"clubmusic2"
                         
                     },
                     {
                         "type":"postback",
                         "title":"湘南の海でサーフィンがしたい",
-                        "payload":"shonan"
+                        "payload":"shonan2"
                     }
                 ]
             }
@@ -176,13 +176,13 @@ class MessengerBotController < ActionController::Base
                     {
                         "type":"postback",
                         "title":"地中海のリゾートでのんびりしたい",
-                        "payload":"bossanova"
+                        "payload":"bossanova2"
                         
                     },
                     {
                         "type":"postback",
                         "title":"ホテルの最上階のラウンジでお酒を飲みたい",
-                        "payload":"jazz"
+                        "payload":"realjazz"
                     }
                 ]
             }
@@ -191,8 +191,8 @@ class MessengerBotController < ActionController::Base
       when "freeword"
           sender.reply({ text: "じゃあ、どんな気分か言ってみてください。なるべく探してみるので・・・" })
       #曲を紹介する
-      　when "clubmusic"
-           @@music = Music.find_by(genre: "clubmusic")
+      　when "clubmusic2"
+           @@music = Music.find_by(genre: "clubmusic2")
           
            sender.reply({ "attachment":{
              "type":"template",
@@ -220,8 +220,8 @@ class MessengerBotController < ActionController::Base
              }
            }
        })
-      when "shonan"
-          @@music = Music.find_by(genre: "surfrock")
+      when "shonan2"
+          @@music = Music.find_by(genre: "shonan2")
           sender.reply({ "attachment":{
              "type":"template",
              "payload":{
@@ -248,8 +248,8 @@ class MessengerBotController < ActionController::Base
              }
            }
        })
-      when "bossanova"
-          @@music = Music.find_by(genre: "bossanova")
+      when "bossanova2"
+          @@music = Music.find_by(genre: "bossanova2")
           sender.reply({ "attachment":{
              "type":"template",
              "payload":{
@@ -276,8 +276,8 @@ class MessengerBotController < ActionController::Base
              }
            }
        })
-      when "jazz"
-          @@music = Music.find_by(genre: "jazz")
+      when "realjazz"
+          @@music = Music.find_by(genre: "realjazz")
           
            sender.reply({ "attachment":{
              "type":"template",
