@@ -71,16 +71,17 @@ class MessengerBotController < ActionController::Base
                                         "type":"postback",
                                         "title":"説明を読む",
                                         "payload":"readinstructions"
-                                    },
+                                    }
                                 ]
                             }
                           }
                       })
             
         elsif text.include?("つらい")
-          sender.reply({ text: "つらいね〜わかるよ〜"})
-        elsif text == "おすすめ"
-          sender.reply({ text: "おすすめを教えます！"})
+          sender.reply({ text: "つらいですよね〜わかります〜"})
+        else
+        # elsif text == "おすすめ"
+        #   sender.reply({ text: "おすすめを教えます！"})
         end 
         
     end    
@@ -125,17 +126,17 @@ class MessengerBotController < ActionController::Base
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"ノリノリでいきたい。",
+                        "title":"ノリノリがいい",
                         "payload":"hightempo"
                     },
                     {
                         "type":"postback",
-                        "title":"リラックスしたい。",
+                        "title":"リラックスしたい",
                         "payload":"lowtempo"
                     },
                     {
                         "type":"postback",
-                        "title":"どっちでもない。",
+                        "title":"どっちでもない",
                         "payload":"freeword"
                     }
                 ]
@@ -197,7 +198,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"私のイチオシです！#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"私のイチオシです！\n#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -226,7 +227,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"爽やかですねー！#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"爽やかですねー！\n#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -254,7 +255,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"わかります。#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"わかります。\n#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -283,7 +284,7 @@ class MessengerBotController < ActionController::Base
              "type":"template",
              "payload":{
                  "template_type":"button",
-                 "text":"おしゃれですね！#{@@music.artist}の#{@@music.musicname}はどうですか？",
+                 "text":"おしゃれですね！\n#{@@music.artist}の#{@@music.musicname}はどうですか？",
                  "buttons":[
                      {
                          "type":"web_url",
@@ -313,7 +314,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"あなたの気分に合いそうな曲を教えます。\nいい！と思ったら、お気に入りに登録してください。\n「お気に入り」と言ってくれたらいつでもお気に入りに登録した曲が見られます。\n「おすすめ」と言ってくれたら、私のおすすめを紹介します。\n気が向いた時に話しかけてくれたら嬉しいです。",
+                "text":"あなたの気分に合いそうな曲を教えます。\nいい！と思ったら、お気に入りに登録してください。\n「お気に入り」と言ってくれればいつでもお気に入りに登録した曲が見られます。\n左下のメニューからも、会話を始められます。\n気が向いた時に話しかけてくれたら嬉しいです。",
                 "buttons":[
                 
                     {
@@ -332,7 +333,7 @@ class MessengerBotController < ActionController::Base
             "type":"template",
             "payload":{
                 "template_type":"button",
-                "text":"よかったです！お気に入りに登録しました。",
+                "text":"よかったです！\nお気に入りに登録しました。",
                 "buttons":[
                     {
                         "type":"postback",
@@ -358,7 +359,7 @@ class MessengerBotController < ActionController::Base
                                     {
                                         "type":"web_url",
                                         "url":"#{@favorites[s].url}",
-                                        "title":"聞く",
+                                        "title":"聞く"
                                         
                                     }
                                     
