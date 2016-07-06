@@ -71,7 +71,33 @@ class MessengerBotController < ActionController::Base
             }
         }
       })
-        elsif text == "探す"
+      elsif text == "探す"
+      sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"#{profile_last_name} #{profile_first_name}さん、いまどんな気分ですか？",
+                "buttons":[
+                    {
+                        "type":"postback",
+                        "title":"テンションを上げたい",
+                        "payload":"hightempo"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"リラックスしたい",
+                        "payload":"lowtempo"
+                    },
+                    {
+                        "type":"postback",
+                        "title":"どっちでもない",
+                        "payload":"freeword"
+                    }
+                ]
+            }
+        }
+      })
+        elsif text == "こんにちは"
           sender.reply({ "attachment":{
                             "type":"template",
                             "payload":{
