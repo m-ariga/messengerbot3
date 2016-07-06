@@ -54,7 +54,23 @@ class MessengerBotController < ActionController::Base
           
         #   sender.reply({ text: "#{s + 1}. 曲名：#{@favorites[s].musicname}、アーティスト：#{@favorites[s].artist}、URL：#{@favorites[s].url}" })
           }
-        
+        elsif text == "説明"
+        sender.reply({ "attachment":{
+            "type":"template",
+            "payload":{
+                "template_type":"button",
+                "text":"あなたの気分に合いそうな曲を教えます。\nいい！と思ったら、お気に入りに登録してください。\n「お気に入り」と言ってくれればいつでもお気に入りに登録した曲が見られます。\n左下のメニューからも、会話を始められます。\n気が向いた時に話しかけてくれたら嬉しいです。",
+                "buttons":[
+                
+                    {
+                        "type":"postback",
+                        "title":"さっそく曲を探す",
+                        "payload":"lookformusic"
+                    }
+                ]
+            }
+        }
+      })
         elsif text == "探す"
           sender.reply({ "attachment":{
                             "type":"template",
