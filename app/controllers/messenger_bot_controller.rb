@@ -126,7 +126,7 @@ class MessengerBotController < ActionController::Base
                 "buttons":[
                     {
                         "type":"postback",
-                        "title":"ノリノリがいい",
+                        "title":"テンションを上げたい",
                         "payload":"hightempo"
                     },
                     {
@@ -159,7 +159,7 @@ class MessengerBotController < ActionController::Base
                     },
                     {
                         "type":"postback",
-                        "title":"湘南の海でサーフィンがしたい",
+                        "title":"サーフィンがしたい",
                         "payload":"shonan2"
                     }
                 ]
